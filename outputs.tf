@@ -5,6 +5,6 @@ output "alb" {
     arn        = aws_lb.lb.arn
     arn_suffix = aws_lb.lb.arn_suffix
     dns        = aws_lb.lb.dns_name
-    uri        = "http${local.https_enabled?"s":""}://${aws_lb.lb.dns_name}"
+    uri        = "http${var.https_enabled?"s":""}://${aws_lb.lb.dns_name}"
   }
 }

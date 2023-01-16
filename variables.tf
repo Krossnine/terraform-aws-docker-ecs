@@ -89,3 +89,7 @@ variable "vpc_private_subnets" {
 variable "vpc_public_subnets" {
   description = "Public vpc subnets for load balancer"
 }
+
+variable "https_enabled" {
+  description = "Should enable https for alb ?"
+}

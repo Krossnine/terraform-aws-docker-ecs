@@ -72,7 +72,7 @@ resource "aws_alb_target_group" "main" {
 }
 
 resource "aws_alb_listener" "http_only" {
-  count             = local.https_enabled ? 0 : 1
+  count             = var.https_enabled ? 0 : 1
   load_balancer_arn = aws_lb.lb.id
   port              = 80
   protocol          = "HTTP"
@@ -84,7 +84,7 @@ resource "aws_alb_listener" "http_only" {
 }
 
 resource "aws_alb_listener" "http_redirect_to_https" {
-  count             = local.https_enabled ? 1 : 0
+  count             = var.https_enabled ? 1 : 0
   load_balancer_arn = aws_lb.lb.id
   port              = 80
   protocol          = "HTTP"
@@ -101,7 +101,7 @@ resource "aws_alb_listener" "http_redirect_to_https" {
 }
 
 resource "aws_alb_listener" "https" {
-  count             = local.https_enabled ? 1 : 0
+  count             = var.https_enabled ? 1 : 0
   load_balancer_arn = aws_lb.lb.id
   port              = 443
   protocol          = "HTTPS"

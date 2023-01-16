@@ -56,6 +56,7 @@ No modules.
 | <a name="input_env_vars"></a> [env\_vars](#input\_env\_vars) | n/a | `list` | `[]` | no |
 | <a name="input_health_check_interval"></a> [health\_check\_interval](#input\_health\_check\_interval) | n/a | `number` | `300` | no |
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | n/a | `string` | `"/"` | no |
+| <a name="input_https_enabled"></a> [https\_enabled](#input\_https\_enabled) | Should enable https for alb ? | `any` | n/a | yes |
 | <a name="input_log_retention_in_days"></a> [log\_retention\_in\_days](#input\_log\_retention\_in\_days) | Log retention in days | `number` | `30` | no |
 | <a name="input_max_instance_count"></a> [max\_instance\_count](#input\_max\_instance\_count) | Maximum number of task instance | `number` | `2` | no |
 | <a name="input_min_instance_count"></a> [min\_instance\_count](#input\_min\_instance\_count) | Minimum number of task instance | `number` | `1` | no |
