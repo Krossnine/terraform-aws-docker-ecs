@@ -54,6 +54,7 @@ No modules.
 | <a name="input_default_tags"></a> [default\_tags](#input\_default\_tags) | n/a | `map` | `{}` | no |
 | <a name="input_docker_image"></a> [docker\_image](#input\_docker\_image) | Name of the docker image | `any` | n/a | yes |
 | <a name="input_env_vars"></a> [env\_vars](#input\_env\_vars) | n/a | `list` | `[]` | no |
+| <a name="input_force_new_deployment"></a> [force\_new\_deployment](#input\_force\_new\_deployment) | Force new deployment | `bool` | `true` | no |
 | <a name="input_health_check_interval"></a> [health\_check\_interval](#input\_health\_check\_interval) | n/a | `number` | `300` | no |
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | n/a | `string` | `"/"` | no |
 | <a name="input_https_enabled"></a> [https\_enabled](#input\_https\_enabled) | Should enable https for alb ? | `any` | n/a | yes |
@@ -67,6 +68,7 @@ No modules.
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | Public vpc id for load balancer | `any` | n/a | yes |
 | <a name="input_vpc_private_subnets"></a> [vpc\_private\_subnets](#input\_vpc\_private\_subnets) | Private vpc subnets for ecs | `any` | n/a | yes |
 | <a name="input_vpc_public_subnets"></a> [vpc\_public\_subnets](#input\_vpc\_public\_subnets) | Public vpc subnets for load balancer | `any` | n/a | yes |
+| <a name="input_wait_for_steady_state"></a> [wait\_for\_steady\_state](#input\_wait\_for\_steady\_state) | Wait for steady state | `bool` | `true` | no |
 
 ## Outputs
 

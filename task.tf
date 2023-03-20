@@ -44,7 +44,10 @@ resource "aws_ecs_task_definition" "task" {
           protocol      = "tcp"
         }
       ]
-      environment      = var.env_vars
+      environment      = concat(
+        var.env_vars,
+        var.force_new_deployment ? [{ name : "LAST_DEPLOYMENT", value : timestamp() }] : [],
+      )
       logConfiguration = {
         logDriver = "awslogs",
         "options" = {
