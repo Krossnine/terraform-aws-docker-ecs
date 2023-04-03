@@ -29,6 +29,18 @@ variable "default_tags" {
   default = {}
 }
 
+variable "health_check_threshold" {
+  default = 3
+}
+
+variable "health_check_timeout" {
+  default = 30
+}
+
+variable "health_check_unhealthy_threshold" {
+  default = 2
+}
+
 variable "health_check_path" {
   default = "/"
 }
