@@ -34,9 +34,9 @@ resource "aws_ecs_task_definition" "task" {
 
   container_definitions = jsonencode([
     {
-      name         = var.name
-      image        = var.docker_image
-      essential    = true
+      name      = var.name
+      image     = var.docker_image
+      essential = true
       portMappings = [
         {
           containerPort = var.container_port
@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "task" {
           protocol      = "tcp"
         }
       ]
-      environment      = concat(
+      environment = concat(
         var.env_vars,
         var.force_new_deployment ? [{ name : "LAST_DEPLOYMENT", value : timestamp() }] : [],
       )
