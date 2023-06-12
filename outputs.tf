@@ -8,3 +8,8 @@ output "alb" {
     uri        = "http${var.https_enabled?"s":""}://${aws_lb.lb.dns_name}"
   }
 }
+
+output "log_group" {
+  description = "The log group resource"
+  value       = aws_cloudwatch_log_group.log_group.arn
+}
