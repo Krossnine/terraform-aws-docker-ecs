@@ -11,5 +11,9 @@ output "alb" {
 
 output "log_group" {
   description = "The log group resource"
-  value       = aws_cloudwatch_log_group.log_group.arn
+  value = {
+    arn    = aws_cloudwatch_log_group.log_group.arn
+    key    = aws_cloudwatch_log_group.log_group.name
+    region = var.region
+  }
 }
