@@ -1,21 +1,50 @@
+locals {
+  ecs_ingress_rules_with_container = concat(
+    var.ecs_ingress_rules,
+    [{
+      protocol         = "tcp"
+      from_port        = var.container_port
+      to_port          = var.container_port
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+      security_groups  = [aws_security_group.sg_lb.id]
+    }]
+  )
+}
+
 resource "aws_security_group" "sg_ecs" {
   name        = "${var.name}-ecs-tasks-sg"
   description = "SG for ECS"
   vpc_id      = var.vpc_id
 
-  ingress {
-    protocol        = "tcp"
-    from_port       = 80
-    to_port         = var.container_port
-    cidr_blocks     = ["0.0.0.0/0"]
-    security_groups = [aws_security_group.sg_lb.id]
+  dynamic "ingress" {
+    for_each = local.ecs_ingress_rules_with_container
+    content {
+      from_port        = ingress.value.from_port
+      to_port          = ingress.value.to_port
+      protocol         = ingress.value.protocol
+      cidr_blocks      = lookup(ingress.value, "cidr_blocks", null)
+      description      = lookup(ingress.value, "description", null)
+      ipv6_cidr_blocks = lookup(ingress.value, "ipv6_cidr_blocks", null)
+      prefix_list_ids  = lookup(ingress.value, "prefix_list_ids", null)
+      security_groups  = lookup(ingress.value, "security_groups", null)
+      self             = lookup(ingress.value, "self", null)
+    }
   }
 
-  egress {
-    protocol    = -1
-    from_port   = 0
-    to_port     = 0
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "egress" {
+    for_each = var.ecs_egress_rules
+    content {
+      from_port        = egress.value.from_port
+      to_port          = egress.value.to_port
+      protocol         = egress.value.protocol
+      cidr_blocks      = lookup(egress.value, "cidr_blocks", null)
+      description      = lookup(egress.value, "description", null)
+      ipv6_cidr_blocks = lookup(egress.value, "ipv6_cidr_blocks", null)
+      prefix_list_ids  = lookup(egress.value, "prefix_list_ids", null)
+      security_groups  = lookup(egress.value, "security_groups", null)
+      self             = lookup(egress.value, "self", null)
+    }
   }
 
   tags = merge(var.default_tags, {
