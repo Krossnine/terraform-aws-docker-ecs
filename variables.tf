@@ -115,3 +115,45 @@ variable "force_new_deployment" {
   description = "Force new deployment"
   default     = true
 }
+
+variable "ecs_ingress_rules" {
+  description = "ECS task ingress rules"
+  type = list(object({
+    from_port        = number
+    to_port          = number
+    protocol         = optional(string, "tcp")
+    cidr_blocks      = optional(list(string), ["0.0.0.0/0"])
+    description      = optional(string)
+    ipv6_cidr_blocks = optional(list(string))
+    prefix_list_ids  = optional(list(string))
+    security_groups  = optional(list(string))
+    self             = optional(bool)
+  }))
+
+  default = []
+}
+
+variable "ecs_egress_rules" {
+  description = "ECS ingress rules"
+  type = list(object({
+    from_port        = number
+    to_port          = number
+    protocol         = optional(string, "tcp")
+    cidr_blocks      = optional(list(string), ["0.0.0.0/0"])
+    description      = optional(string)
+    ipv6_cidr_blocks = optional(list(string), ["::/0"])
+    prefix_list_ids  = optional(list(string))
+    security_groups  = optional(list(string))
+    self             = optional(bool)
+  }))
+
+  default = [
+    {
+      protocol         = "-1"
+      from_port        = 0
+      to_port          = 0
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+    }
+  ]
+}
