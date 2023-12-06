@@ -1,0 +1,25 @@
+# Terraform
+**/.terraform
+**/.terraform.lock.hcl
+.terraformrc
+terraform.rc
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Crash log files
+crash.log
+
+.env
+
+# IDE
+.idea
+*.iml
+node_modules
+**/node_modules
+**/coverage
+
+# Misc
+.DS_Store
+*.pem

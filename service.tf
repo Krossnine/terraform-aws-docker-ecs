@@ -20,6 +20,10 @@ resource "aws_ecs_service" "ecs_service" {
     container_port   = var.container_port
   }
 
+  depends_on = [
+    aws_alb_target_group.main
+  ]
+
   tags = merge(var.default_tags, {
     Type : "fargate"
   })
