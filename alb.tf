@@ -69,6 +69,8 @@ resource "aws_alb_target_group" "main" {
   tags = merge(var.default_tags, {
     Type : "load-balancer"
   })
+
+  depends_on = [aws_lb.lb]
 }
 
 resource "aws_alb_listener" "http_only" {
