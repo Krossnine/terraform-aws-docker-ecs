@@ -17,3 +17,8 @@ output "log_group" {
     region = var.region
   }
 }
+
+output "ecs" {
+  description = "The ECS resource"
+  value = aws_ecs_service.ecs_service
+}
