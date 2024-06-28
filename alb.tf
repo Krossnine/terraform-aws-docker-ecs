@@ -41,7 +41,7 @@ resource "aws_lb" "lb" {
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.sg_lb.id]
-  subnets                    = var.vpc_public_subnets
+  subnets                    = var.vpc_public_subnets != null ? var.vpc_public_subnets : var.vpc_private_subnets
   enable_deletion_protection = false
 
   tags = merge(var.default_tags, {

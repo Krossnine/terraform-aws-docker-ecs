@@ -99,7 +99,8 @@ variable "vpc_private_subnets" {
 }
 
 variable "vpc_public_subnets" {
-  description = "Public vpc subnets for load balancer"
+  description = "Public vpc subnets for load balancer. If vpc_public_subnets is null then alb will use private subnets"
+  default = null
 }
 
 variable "https_enabled" {
