@@ -107,6 +107,11 @@ variable "https_enabled" {
   description = "Should enable https for alb ?"
 }
 
+variable "ssl_policy" {
+  default = "ELBSecurityPolicy-TLS-1-2-2017-01"
+  description = "SSL security policy"
+}
+
 variable "wait_for_steady_state" {
   description = "Wait for steady state"
   default     = true
