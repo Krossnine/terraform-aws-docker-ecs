@@ -20,6 +20,10 @@ resource "aws_ecs_service" "ecs_service" {
     container_port   = var.container_port
   }
 
+
+  deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent
+  deployment_maximum_percent = var.deployment_maximum_percent
+
   depends_on = [
     aws_alb_target_group.main
   ]
