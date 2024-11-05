@@ -49,6 +49,27 @@ variable "health_check_interval" {
   default = 300
 }
 
+variable "deployment_minimum_healthy_percent" {
+  type        = number
+  default     = null
+  description = "The minimum healthy percent on deployment"
+
+  validation {
+    condition     = var.deployment_minimum_healthy_percent == null || (try(var.deployment_minimum_healthy_percent >= 0 && var.deployment_minimum_healthy_percent <= 100, false))
+    error_message = "The minimum healthy percent should be either null or between 0 and 100."
+  }
+}
+
+variable "deployment_maximum_percent" {
+  type = number
+  default = null
+  description = "The maximum percent on deployment"
+  validation {
+    condition     = var.deployment_maximum_percent == null || (try(var.deployment_maximum_percent >= 0 && var.deployment_maximum_percent <= 100, false))
+    error_message = "The maximum healthy percent should be between 0 and 100"
+  }
+}
+
 variable "docker_image" {
   description = "Name of the docker image"
 }
